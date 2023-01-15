@@ -71,7 +71,7 @@ php artisan make:migration create_posts
         });
 ```
 
-After creating migration for tags, I added the following columns which are required regarding relation between posts and tags.
+After creating migration for tags, I added the following columns which are fundamental requirements.
 
 ```shell
 php artisan make:migration create_tags
@@ -86,7 +86,7 @@ php artisan make:migration create_tags
         });
 ```
 
-After creating migration for post and tag, I added the following columns which are fundamental requirements.
+After creating migration for post and tag, I added the following columns which are required regarding relation between posts and tags.
 
 ```shell
 php artisan make:migration create_post_tag
