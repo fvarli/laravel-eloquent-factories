@@ -10,7 +10,7 @@ Look at one of the following topics to learn more about Laravel Eloquent Factori
 
 * [Requirements](#requirements)
 * [Installation](#installation)
-* [Usage](#usage)
+* [Example](#example)
 * [Official Documentation](#official-documentation)
 
 
@@ -49,13 +49,22 @@ php artisan serve
 
 ## Example
 
-First, creating migration for database structure as below:
+### Migrations
 
-After creating migration for posts, I added the following columns which are needed to be used. Of course some ones are optional, it is up to you.
+First, let's describe what Laravel Migration is and create migrations for database structure as below:
+
+#### What is Laravel Migration?
+
+Laravel Migration is an essential feature in Laravel that allows you to create a table in your database. It allows you to modify and share the application's database schema. You can modify the table by adding a new column or deleting an existing column.
+
+You can use the artisan make:migration command line helper to generate new migrations for your application. To create a new migration for your posts table, run:
 
 ```shell
 php artisan make:migration create_posts
 ```
+
+After creating migration for posts, I added the following columns which are needed to be used. Of course some ones are optional, it is up to you.
+
 
 ```php
         Schema::create('posts', function (Blueprint $table) {
@@ -100,6 +109,57 @@ php artisan make:migration create_post_tag
             $table->timestamps();
         });
 ```
+
+### Models
+
+Now, let's describe what Laravel Model is and create models for Eloquent ORM (Object-Relational Mapping) structure as below:
+
+#### What is Laravel Model?
+
+A Model is basically a way for querying data to and from the table in the database. Laravel provides a simple way to do that using Eloquent ORM (Object-Relational Mapping). Every table has a Model to interact with the table. Eloquent uses database models to represent tables and relationships in supported databases. The name of the database table is typically inferred from the model name, in plural form. For instance, a model named Post will use posts as its default table name.
+
+You can use the artisan make:model command line helper to generate new models for your application. To create a new Eloquent model for your posts table, run:
+
+```shell
+php artisan make:model Post
+```
+
+After creating model for Post, I added the following functions which are needed to be used. Since user has one more posts, relation should be belongsTo as reverse. Since post and tag have many-to-many relation between them, relation with Tag should be belongsToMany as reverse.
+
+```php
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+```
+
+```shell
+php artisan make:model Tag
+```
+
+After creating model for Tag, I added the following function which is needed to be used. Since post and tag have many-to-many relation between them, relation with Post should be belongsToMany as reverse.
+
+```php
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
+    }
+```
+
+User model already is existing since when creating a Laravel Project. So I added the following function since a user can have one more posts.
+
+```php
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+```
+
 ## Official Documentation
 
 Please see [Eloquent: Factories](https://laravel.com/docs/9.x/eloquent-factories) for more information on Laravel documentation.
