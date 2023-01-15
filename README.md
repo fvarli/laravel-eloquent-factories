@@ -1,10 +1,12 @@
 ## Laravel Eloquent Factories
 
-In this repository, we are going to learn about Laravel 9 Factories and seeder with an example. This repository is intended for those who have a basic understanding of Laravel and are looking to expand their knowledge. I will be using a practical example to demonstrate how Factories and Seeders can be used to generate dummy data for testing purposes.
+In this repository, I'm' going to show how to use Laravel 9 Factories and seeder with an example. This repository is intended for those who have a basic understanding of Laravel and are looking to expand their knowledge. I will be using a practical example to demonstrate how Factories and Seeders can be used to generate dummy data for testing purposes.
 
 Let's get started!
 
 ## Overview
+
+Look at one of the following topics to learn more about Laravel Eloquent Factories.
 
 * [Requirements](#requirements)
 * [Installation](#installation)
@@ -45,11 +47,59 @@ cd laravel-eloquent-factories
 php artisan serve
 ```
 
-## Usage
+## Example
 
-It will be updated.
+First, creating migration for database structure as below:
 
+After creating migration for posts, I added the following columns which are needed to be used. Of course some ones are optional, it is up to you.
 
+```shell
+php artisan make:migration create_posts
+```
+
+```php
+        Schema::create('posts', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('title')->unique();
+            $table->string('excerpt')->unique();
+            $table->string('body');
+            $table->string('min_to_read')->default(1);
+            $table->string('image_path');
+            $table->string('is_published');
+            $table->timestamps();
+        });
+```
+
+After creating migration for tags, I added the following columns which are required regarding relation between posts and tags.
+
+```shell
+php artisan make:migration create_tags
+```
+
+```php
+        Schema::create('tags', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('slug');
+            $table->timestamps();
+        });
+```
+
+After creating migration for post and tag, I added the following columns which are fundamental requirements.
+
+```shell
+php artisan make:migration create_post_tag
+```
+
+```php
+        Schema::create('post_tag', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('tag_id');
+            $table->timestamps();
+        });
+```
 ## Official Documentation
 
 Please see [Eloquent: Factories](https://laravel.com/docs/9.x/eloquent-factories) for more information on Laravel documentation.
