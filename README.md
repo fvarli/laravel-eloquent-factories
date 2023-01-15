@@ -39,7 +39,7 @@ composer global require laravel/installer
 laravel new laravel-eloquent-factories
 ```
 
-After the project has been created, start Laravel's local development server using the Laravel's Artisan CLI serve command:
+After the project has been created, start Laravel's local development server using the Laravel's Artisan CLI serve command. Thus, you can ensure everything installed properly.
 
 ```shell
 cd laravel-eloquent-factories
