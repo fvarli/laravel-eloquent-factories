@@ -71,8 +71,7 @@ new migration for your posts table, run:
 php artisan make:migration create_posts
 ```
 
-After creating migration for posts, I added the following columns which are needed to be used. Of course some ones are
-optional, it is up to you.
+After creating a migration for posts, I added the following columns which are needed to be used. Of course, some are optional, it is up to you.
 
 ```php
         Schema::create('posts', function (Blueprint $table) {
@@ -88,7 +87,7 @@ optional, it is up to you.
         });
 ```
 
-After creating migration for tags, I added the following columns which are fundamental requirements.
+After creating a migration for tags, I added the following columns as they are fundamental requirements.
 
 ```shell
 php artisan make:migration create_tags
@@ -228,6 +227,49 @@ php artisan make:factory TagFactory
 
 User factory already is existing since when creating a Laravel Project. I kept the user factory as it is since I changed
 noting regarding users table.
+
+
+### Seeders
+
+Now, let's describe what Laravel Seeder is and create seeder as below:
+
+#### What is Laravel Seeder?
+
+Laravel offers a tool to include automatically dummy data to the database which means called seeding. The database
+seeder is used for adding simply testing data to database.
+
+You can use the artisan make:seeder command line helper to generate new seeders for your application. To create a new
+Seeder, run:
+
+```shell
+php artisan make:seeder UserSeeder
+```
+
+```php
+        $tags = Tag::factory(10)->create();
+
+        User::factory(30)->create()->each(function ($user) use($tags){
+            Post::factory(rand(1,4))->create([
+                'user_id' => $user->id
+            ])->each(function ($posts) use($tags){
+                $posts->tags()->attach($tags->random(2));
+            });
+        });
+```
+
+You can execute the db:seed artisan command to seed your database. By default, the db:seed command runs the Database\Seeders\DatabaseSeeder class, which may, in turn, invoke other seed classes. it is used for laravel seed multiple records at a time.
+
+Database Seeder
+```php
+    public function run()
+    {
+        $this->call(UserSeeder::class);
+    }
+```
+
+```shell
+php artisan db:seed
+```
 
 ## Official Documentation
 
