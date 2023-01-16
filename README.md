@@ -1,6 +1,6 @@
 ## Laravel Eloquent Factories
 
-In this repository, I'm' going to show how to use Laravel 9 Factories and seeder with an example. This repository is
+In this repository, I'm going to show how to use Laravel 9 Factories and seeder with an example. This repository is
 intended for those who have a basic understanding of Laravel and are looking to expand their knowledge. I will be using
 a practical example to demonstrate how Factories and Seeders can be used to generate dummy data for testing purposes.
 
