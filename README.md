@@ -64,14 +64,14 @@ Laravel Migration is an essential feature in Laravel that allows you to create a
 to modify and share the application's database schema. You can modify the table by adding a new column or deleting an
 existing column.
 
-You can use the artisan make:migration command line helper to generate new migrations for your application. To create a
-new migration for your posts table, run:
+You can use the artisan make:migration command line helper to generate new migrations for your application.
+
+After creating a migration for posts, I added the following columns which are needed to be used. Of course, some are optional, it is up to you. To create a
+new migration for your posts table, run the following command and add new columns to the posts table:
 
 ```shell
 php artisan make:migration create_posts
 ```
-
-After creating a migration for posts, I added the following columns which are needed to be used. Of course, some are optional, it is up to you.
 
 ```php
         Schema::create('posts', function (Blueprint $table) {
@@ -131,16 +131,16 @@ database models to represent tables and relationships in supported databases. Th
 typically inferred from the model name, in plural form. For instance, a model named Post will use posts as its default
 table name.
 
-You can use the artisan make:model command line helper to generate new models for your application. To create a new
-Eloquent model for your posts table, run:
-
-```shell
-php artisan make:model Post
-```
+You can use the artisan make:model command line helper to generate new models for your application.
 
 After creating model for Post, I added the following functions which are needed to be used. Since user has one more
 posts, relation should be belongsTo as reverse. Since post and tag have many-to-many relation between them, relation
 with Tag should be belongsToMany as reverse.
+To create a new Eloquent model for your posts table, run the following command and add the following functions regarding the relations:
+
+```shell
+php artisan make:model Post
+```
 
 ```php
     public function user()
@@ -188,15 +188,15 @@ When testing your application or seeding your database, you may need to insert a
 of manually specifying the value of each column, Laravel allows you to define a set of default attributes for each of
 your Eloquent models using model factories.
 
-You can use the artisan make:factory command line helper to generate new factories for your application. To create a new
-Eloquent model for your posts table, run:
+You can use the artisan make:factory command line helper to generate new factories for your application.
+
+After creating factory for Post, I added the following dummy data for each column where was added to posts table with
+migration above. To create a new
+Eloquent model for your posts table, run add the faker date for each column which is necessary:
 
 ```shell
 php artisan make:factory PostFactory
 ```
-
-After creating factory for Post, I added the following dummy data for each column where was added to posts table with
-migration above.
 
 ```php
         return [
