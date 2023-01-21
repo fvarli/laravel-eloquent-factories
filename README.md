@@ -8,7 +8,8 @@ Let's get started!
 
 ## Overview
 
-Look at one of the following topics to learn more about Laravel Eloquent Factories.
+In this repository, you'll find information on the following topics:
+
 
 * [Requirements](#requirements)
 * [Installation](#installation)
@@ -51,14 +52,15 @@ php artisan serve
 ```
 
 ## Example
+In this section, I'll go through an example of how to use migrations and models to create a database structure and interact with it using Eloquent ORM.
 
 ### Migrations
 
-First, let's describe what Laravel Migration is and create migrations for database structure as below:
+First, let's describe what Laravel Migration is and create migrations for the database structure.
 
 #### What is Laravel Migration?
 
-Laravel Migration is an essential feature in Laravel that allows you to create a table in your database. It allows you to modify and share the application's database schema. You can modify the table by adding a new column or deleting an existing column.
+Laravel Migration is an essential feature that allows you to create tables in your database and modify them. You can use the php artisan make:migration command line helper to generate new migrations for your application.
 
 You can use the artisan make:migration command line helper to generate new migrations for your application.
 
